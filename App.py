@@ -3,13 +3,6 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LogisticRegression
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import OrdinalEncoder
 import requests
 from streamlit_lottie import st_lottie
 import time
@@ -118,7 +111,7 @@ with tab_predict:
                 smoking = st.selectbox("🚬 Smoking Status", options=[
                                        'Never', 'Current', 'Former'])
                 alcohol_intake = st.selectbox("🍺 Alcohol Intake", options=[
-                                              'unknown', 'Low', 'Moderate', 'High'])
+                                               'Low', 'Moderate', 'High'])
                 physical_activity = st.selectbox("🏃 Physical Activity", options=[
                                                  'Sedentary', 'Active', 'Moderate'])
                 diet = st.selectbox("🥗 Diet Quality", options=[
@@ -152,21 +145,7 @@ with tab_predict:
             with center[1]:
                 submit = st.form_submit_button("🔍 Predict Heart Disease Risk")
 
-    with right:
-        st.markdown("### Preview")
-        # live preview card
-        preview_df = pd.DataFrame({
-            'age': [age], 'gender': [gender], 'weight': [weight], 'height': [height], 'bmi': [bmi],
-            'smoking': [smoking], 'alcohol_intake': [alcohol_intake], 'physical_activity': [physical_activity],
-            'diet': [diet], 'stress_level': [stress_level], 'hypertension': [hypertension], 'diabetes': [diabetes],
-            'hyperlipidemia': [hyperlipidemia], 'family_history': [family_history], 'previous_heart_attack': [previous_heart_attack],
-            'systolic_bp': [systolic_bp], 'diastolic_bp': [diastolic_bp], 'heart_rate': [heart_rate],
-            'blood_sugar_fasting': [blood_sugar_fasting], 'cholesterol_total': [cholesterol_total]
-        })
-        st.table(preview_df.T.rename(columns={0: "value"}))
 
-        if lottie_processing:
-            st_lottie(lottie_processing, height=200)
 
     # When the user submits: run prediction and show cinematic results
     if submit:
