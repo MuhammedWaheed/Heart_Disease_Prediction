@@ -77,6 +77,4 @@ Predictions are for **educational and preventive purposes only.**
 Always consult medical professionals for real decisions.
 
 ---
-
-## 🙌 Author
 **Muhammed** — Data Scientist & Machine Learning Practitioner  
